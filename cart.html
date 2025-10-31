@@ -119,8 +119,13 @@
 
       const cartItem = document.createElement('div');
       cartItem.className = 'cart-item';
-      cartItem.innerHTML = `
-        
+      
+        cartItems.innerHTML += `
+  <div class="cart-item">
+    <p>${item.name}</p>
+    <p>${item.price}</p>
+  </div>
+`;
         <div class="cart-item-details">
           <h3>${item.name}</h3>
           <p>${item.price}</p>
