@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Glow Haven | Beauty &amp; Skincare</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+      
+  <div class="logo">BeautyGlow</div>
+    
+    <nav >
+       
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html"class="cart">🛒</a>
+      <a href="checkout.html">checkout</a>
+    </nav>
+  </header>
+ 
+<section class="hero">
+  <div class="hero-text">
+    <h1>Glow with Confidence</h1>
+    <p>Discover the best skincare and beauty products for your radiant look.</p>
+    <a href="shop.html" class="btn">Shop Now</a>
+  </div>
+</section>
+
+  <main>
+   
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Glow Haven</p>
+    <div class="socials">Instagram • Facebook • TikTok</div>
+  </footer>
+  <script>
+  // Get any existing cart items from localStorage
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  // Function to add a product to the cart
+  function addToCart(name, price, image) {
+    const item = { name, price, image };
+    cart.push(item);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(name + " added to your cart!");
+    window.location.href = "cart.html";
+  }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

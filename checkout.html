@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: linear-gradient(135deg, #f9c0ff, #e9a9ff);
+    padding: 20px;
+    margin: 0;
+  }
+  h1 {
+    text-align: center;
+    color: #5b2e90;
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+  .checkout-container {
+    max-width: 850px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(91, 46, 144, 0.2);
+  }
+  .order-summary {
+    border-bottom: 1px solid #f0d4ff;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+  .order-summary h2 {
+    color: #5b2e90;
+  }
+  .summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    color: #555;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    font-weight: bold;
+    color: #5b2e90;
+    margin-bottom: 5px;
+  }
+  input, select, textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #d5a3ff;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: #a855f7;
+    box-shadow: 0 0 5px rgba(168, 85, 247, 0.5);
+  }
+  .submit-btn {
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .submit-btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #9333ea, #db2777);
+  }
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #5b2e90;
+  }
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<h1>Checkout</h1>
+<div class="checkout-container">
+
+  <div class="order-summary" id="order-summary">
+    <h2>Order Summary</h2>
+    <div id="summary-items"></div>
+    <p id="summary-total" style="font-weight:bold; text-align:right; color:#5b2e90;"></p>
+  </div>
+
+  <form id="checkout-form">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" placeholder="Enter your name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter your email" required>
+
+    <label for="address">Delivery Address</label>
+    <textarea id="address" rows="3" placeholder="Enter your address" required></textarea>
+
+    <label for="payment">Payment Method</label>
+    <select id="payment" required>
+      <option value="">-- Select Payment Method --</option>
+      <option value="mpesa">M-Pesa</option>
+      <option value="card">Credit/Debit Card</option>
+      <option value="cash">Cash on Delivery</option>
+    </select>
+
+    <button type="submit" class="submit-btn">Confirm Order</button>
+  </form>
+
+  <a href="cart.html" class="back-link">← Back to Cart</a>
+</div>
+
+<script>
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const summaryItems = document.getElementById('summary-items');
+  const summaryTotal = document.getElementById('summary-total');
+
+  let total = 0;
+  if (cart.length === 0) {
+    summaryItems.innerHTML = '<p>Your cart is empty.</p>';
+  } else {
+    cart.forEach(item => {
+      const priceNum = parseFloat(String(item.price).replace(/[^0-9.]/g, '')) || 0;
+      total += priceNum;
+
+      const div = document.createElement('div');
+      div.className = 'summary-item';
+      div.innerHTML = `
+        <span>${item.name}</span>
+        <span>${item.price}</span>
+      `;
+      summaryItems.appendChild(div);
+    });
+    summaryTotal.innerText = 'Total: Ksh ' + total.toFixed(2);
+  }
+
+  const form = document.getElementById('checkout-form');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    if (cart.length === 0) {
+      alert('Your cart is empty!');
+      return;
+    }
+
+    alert('✅ Order confirmed! Thank you for shopping with us.');
+    localStorage.removeItem('cart');
+    window.location.href = 'index.html';
+  });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
